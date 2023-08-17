@@ -15,7 +15,8 @@ const getRecipeByName = async(req, res)=>{
     try {
         const {name} = req.query;
         if(name){const recipe = await recipeByName(name);
-            if(recipe){return res.status(200).json(recipe);}
+            if(recipe.length > 0){return res.status(200).json(recipe)}
+            else return res.status(404).send("The recipe doesnt exist")
         }
 
     } catch (error) {

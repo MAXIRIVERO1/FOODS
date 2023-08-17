@@ -28,7 +28,3 @@ const recipeById = async (id)=>{
 
 
 module.exports = {recipeById}
-
-
-
-// module.exports = recipe;
