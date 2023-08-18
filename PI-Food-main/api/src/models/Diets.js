@@ -10,10 +10,10 @@ module.exports = (sequelize) => {
         primaryKey: true
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("vegetarian","gluten free","dairy free","lacto ovo vegetarian","vegan","paleolithic","primal","whole 30","pescatarian","ketogenic","fodmap friendly"),
       allowNull: false,
     },
   }, {timestamps: false});
 };
 
-// ("Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian", "Vegan", "Pescetarian", "Paleo", "Primal", "Low FODMAP", "Whole30"),
+// 

@@ -3,9 +3,16 @@ const {Recipe, Diets} = require("../db")
 
 const createRecipe = async(recipe, diet)=>{
     const recipeCreate = await Recipe.create(recipe);
-    const foundDiet = await Diets.findOne({where:{name:diet}})
+    const foundDiet = await Diets.findAll({where:{name:diet}})
     await recipeCreate.addDiets(foundDiet);
-    return recipeCreate;
+    const addAtribute = await Recipe.findOne({
+        where: {id: recipeCreate.id},
+        include:[{model :Diets, attributes: ["name"], through: {attributes: []}}]
+    })
+    const arreglo = addAtribute.diets.map((e)=>e.name)
+    const resultado = {...addAtribute.toJSON(), diets: arreglo}
+    return resultado;
+    
 }
 
 
