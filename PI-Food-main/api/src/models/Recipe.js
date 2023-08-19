@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    steps:{
+    instructions:{
       type: DataTypes.STRING,
       allowNull: true
     }

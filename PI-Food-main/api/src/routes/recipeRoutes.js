@@ -3,7 +3,7 @@
 // const recipe = require("../controllers.js/recipe")
 const {getRecipeById} = require("../handlers/recipeByIdHandler")
 const {getRecipeByName} = require("../handlers/recipeByNameHandler")
-const {recipeHandler} = require("../handlers/recipehandler")
+const {recipeHandler} = require("../handlers/recipeCreateHandler")
 
 
 const routerRecipes = require("express").Router();

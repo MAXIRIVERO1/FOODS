@@ -5,8 +5,8 @@ const {createRecipe} = require("../controllers.js/createRecipeController")
 
 const recipeHandler = async(req, res)=>{
     try {
-        const {name, image, summary, healthScore, steps, diet} = req.body;
-        if(name){const recipeCreate = await createRecipe({name, image, summary, healthScore, steps}, diet);
+        const {title, image, summary, healthScore, instructions, diet} = req.body;
+        if(title){const recipeCreate = await createRecipe({title, image, summary, healthScore, instructions}, diet);
         if(recipeCreate){return res.status(200).json(recipeCreate)}
     } 
     } catch (error) {

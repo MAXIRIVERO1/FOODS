@@ -1,4 +1,4 @@
-const {recipeByName} = require("../controllers.js/recipeNameController")
+const {recipeByName, getAll} = require("../controllers.js/recipeNameController")
 
 // const getRecipeByName = async(req, res)=>{
 //     try {
@@ -17,6 +17,9 @@ const getRecipeByName = async(req, res)=>{
         if(name){const recipe = await recipeByName(name);
             if(recipe.length > 0){return res.status(200).json(recipe)}
             else return res.status(404).send("The recipe doesnt exist")
+        }
+        else{const result = await getAll();
+        if(result){return res.status(200).json(result)}
         }
 
     } catch (error) {
