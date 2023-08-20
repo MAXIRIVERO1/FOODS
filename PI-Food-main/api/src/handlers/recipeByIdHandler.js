@@ -1,4 +1,4 @@
-const {recipeById} = require("../controllers.js/recipe")
+const {recipeById} = require("../controllers.js/recipeByIdController")
 
 const getRecipeById = async(req, res)=>{
     try {
