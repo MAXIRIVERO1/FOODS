@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+    justify-content: center;
+ }
+ .input{
+     background-color: black;
+     color: rgb(86, 236, 143);
+     width: 400px;
+ }
+ .button{
+     border-radius: 5px;
+     background-color: rgba(192, 232, 255, 0.261);
+     color: rgb(35, 239, 86);
+ }
+ .button:hover{
+     transform: scale(1.2);
+     background-color: black;
+     color: rgb(35, 239, 86);
+ }
