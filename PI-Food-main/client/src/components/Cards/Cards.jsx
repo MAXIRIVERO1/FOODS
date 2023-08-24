@@ -6,8 +6,8 @@ const Cards=({recipes})=>{
    return (
       <div className={style.container}>
          {
-            recipes.map((recipe, index)=> {
-                const {title, image, diets} = recipe[index]
+               recipes.map((recipe, index)=> {
+                const {title, image, diets} = recipe
                 console.log(title)
                return (
                    <Card 

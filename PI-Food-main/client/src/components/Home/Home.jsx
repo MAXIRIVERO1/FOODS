@@ -1,40 +1,31 @@
 import React, { useState , useEffect} from "react";
 import SearchBar from "../SearchBar/SearchBar"
 import Cards from "../Cards/Cards";
-import axios from "axios";
+import {onSearch, getAll} from "../../Redux/Actions/actions"
+import {useDispatch, useSelector} from "react-redux"
 
-const Home = ({onSearch})=>{
+const Home = ()=>{
     
     const [currentPage, setCurrentPage] = useState(1);
-    const [recipes, setRecipes] = useState([]);
+    const dispatch = useDispatch();
+    const recipes = useSelector((state)=>state.recipes)
     const recipesPerPage = 10;
 
+
+
     useEffect(()=>{
-        const getAll = async()=>{
-            try {
-                const {data} = await axios("http://localhost:3001/recipes/")
-                setRecipes(data)
-                console.log(recipes)
-            } catch (error) {
-                throw new Error("imposible to update")
-            }
-        }
-        getAll()
+      dispatch(getAll())
     },[])
 
     const totalPages = Math.ceil(recipes.length / recipesPerPage);
-    const startIndex = (currentPage - 1) * recipesPerPage;
-    const endIndex = startIndex + recipesPerPage;
-    const recipesToShow = recipes.slice(startIndex, endIndex);
+
 
     const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-    
     return <div>
         <SearchBar onSearch={onSearch}/>
         
-        <Cards recipes={recipesToShow} currentPage={currentPage} recipesPerPage={recipesPerPage}></Cards>
 
         <div className="pagination">
         {Array.from({ length: totalPages }, (_, index) => (
@@ -44,10 +35,15 @@ const Home = ({onSearch})=>{
             className={currentPage === index + 1 ? "active" : ""}
           >
             {index + 1}
-          </button>
+        </button>
         ))}
         </div>
+        <Cards recipes={recipes.slice(
+      (currentPage - 1) * recipesPerPage,
+      currentPage * recipesPerPage
+    )}></Cards>
     </div>
 }
 
 export default Home;
+

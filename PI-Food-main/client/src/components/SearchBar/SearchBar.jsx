@@ -1,14 +1,16 @@
 import styles from "./SearchBar.module.css" 
 import {useState} from "react"
 // import {useLocation} from "react-router-dom"
-// import imagelogo from "../searchbar/rickymort.png"
-export default function SearchBar(props) {
+import { useDispatch } from "react-redux"
+import {onSearch} from "../../Redux/Actions/actions"
+
+export default function SearchBar() {
    const [name, setName] = useState("")
    // const pathname = useLocation()
-
+   const dispatch = useDispatch();
    const handleEnter = (event)=>{
       if(event.key === "Enter"){
-         props.onSearch(name)
+         dispatch(onSearch(name))
          setName("")
       }
    }
@@ -16,6 +18,11 @@ export default function SearchBar(props) {
    const handleChange = (event)=>{
       setName(event.target.value)
    }
+
+   const handleSearchClick = () => {
+      dispatch(onSearch(name));
+      setName("");
+    };
    return (
       <div className={styles.container} >
          {
@@ -24,7 +31,7 @@ export default function SearchBar(props) {
             // !pathname.includes('/favorites') &&
          <div className={styles.containerinput}>
          <input className={styles.input} type='search' placeholder="Find your Recipe by first name..." onChange={handleChange} value={name} onKeyUp={handleEnter}/>
-         <button className={styles.button} onClick={()=> props.onSearch(name) }>GET</button></div>}
+         <button className={styles.button} onClick={()=>{handleSearchClick()} }>GET</button></div>}
       </div>
    );
 }
