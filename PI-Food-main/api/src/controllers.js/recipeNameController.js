@@ -17,7 +17,9 @@ const recipeByName = async(name)=>{
          if(!responseDB){throw new Error("No existe en la base de datos")}
          console.log(responseDB)
          const arreglo = responseDB.diets.map((e)=>e.name)
-         const resultado = {...responseDB.toJSON(), diets: arreglo}
+         const resultad = {...responseDB.toJSON(), diets: arreglo}
+         const resultado = []
+         resultado.push(resultad)
          console.log(resultado)
          return resultado;
    }
