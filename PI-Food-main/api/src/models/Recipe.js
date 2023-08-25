@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: true
     },
-    instructions:{
+    steps:{
       type: DataTypes.TEXT,
       allowNull: true
     }
