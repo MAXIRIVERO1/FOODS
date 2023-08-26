@@ -9,6 +9,7 @@ const {Recipe, Diets} = require("../db")
 const recipeByName = async(name)=>{
    const response = await axios.get(`${URL_API}?apiKey=${API_KEY}${flag}&number=100`)
    const recipe = response.data.results.filter((recipe)=> recipe.title.toLowerCase().split(" ")[0] === name.toLowerCase().split(" ")[0])
+   console.log(recipe)
    if(!recipe.length){
       const responseDB = await Recipe.findOne({
          where:{title : name},
@@ -24,7 +25,7 @@ const recipeByName = async(name)=>{
          return resultado;
    }
 
-   const destructuring = recipe.map(({id, title, image, diets})=>({id, title, image, diets}))
+   const destructuring = recipe.map(({id, title, image, diets, vegetarian, healthScore})=>({id, title, image, diets, vegetarian, healthScore}))
    
    
    if(destructuring){ return destructuring }
@@ -50,7 +51,10 @@ const getAll = async()=>{
          };
       });
 
-      const arrayApi = result.map(({id, title, image, diets})=>({id, title, image, diets}))
+      const arrayApi = result.map(({id, title, image, diets, vegetarian, healthScore})=>{
+         if(vegetarian)diets.push("vegetarian")
+         return {id, title, image, diets, healthScore}})
+
    const arrayRecipes = [...dbRecipesWithDiets, ...arrayApi]
    if(arrayRecipes){return arrayRecipes}
 }
