@@ -35,8 +35,6 @@ const recipeById = async(id) =>{
     function removeTags(input) {
         return input.replace(/<\/?[^>]+(>|$)/g, "");
     }
-
-    try {
         if(uuidValidate(id)){
         const foundDB = await Recipe.findByPk(id)
         if(!foundDB){throw new Error("Didnt found in the DB")}
@@ -57,9 +55,5 @@ const recipeById = async(id) =>{
             return recipe;
         }
     }
-    }} catch (error) {
-        throw new Error("The id dosnt exist")
-    }
-
-}
+}};
 module.exports = {recipeById}

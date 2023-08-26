@@ -8,6 +8,7 @@ export default function SearchBar() {
    const [name, setName] = useState("")
    // const pathname = useLocation()
    const dispatch = useDispatch();
+   
    const handleEnter = (event)=>{
       if(event.key === "Enter"){
          dispatch(onSearch(name))

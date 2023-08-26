@@ -3,6 +3,7 @@ import SearchBar from "../SearchBar/SearchBar"
 import Cards from "../Cards/Cards";
 import {onSearch, getAll, descendiente, ascendente, filterByDiet, getDiets, byFont, healthScore} from "../../Redux/Actions/actions"
 import {useDispatch, useSelector} from "react-redux"
+import { Link } from "react-router-dom";
 
 const Home = ()=>{
     
@@ -50,6 +51,7 @@ const Home = ()=>{
   };
     return <div>
         <SearchBar onSearch={onSearch}/>
+        <Link to={"/form"}><button>CREATE</button></Link>
         <button onClick={()=>{ascHandler()}}>ASC</button>
         <button onClick={()=>{resetHandler()}}>RESET</button>
         <button onClick={()=>{desHandler()}}>DES</button>

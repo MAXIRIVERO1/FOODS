@@ -15,7 +15,7 @@ const recipeByName = async(name)=>{
          where:{title : name},
          include:[{model :Diets, attributes: ["name"], through: {attributes: []}}]//incluye los name de las dietas asociadas para que json.diets incluya un array de objetos name:diet 
          })
-         if(!responseDB){throw new Error("No existe en la base de datos")}
+         if(!responseDB){throw new Error("Dosnt exist in the database")}
          console.log(responseDB)
          const arreglo = responseDB.diets.map((e)=>e.name)
          const resultad = {...responseDB.toJSON(), diets: arreglo}
@@ -25,7 +25,9 @@ const recipeByName = async(name)=>{
          return resultado;
    }
 
-   const destructuring = recipe.map(({id, title, image, diets, vegetarian, healthScore})=>({id, title, image, diets, vegetarian, healthScore}))
+   const destructuring = recipe.map(({id, title, image, diets, vegetarian, healthScore})=>{
+      if(vegetarian)diets.push("vegetarian")
+      return {id, title, image, diets, healthScore}})
    
    
    if(destructuring){ return destructuring }

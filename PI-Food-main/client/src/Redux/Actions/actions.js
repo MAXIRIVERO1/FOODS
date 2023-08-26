@@ -21,7 +21,7 @@ export function onSearch(name) {
                 })
                 
             } catch (error) {
-            throw new Error("couldnt found the name")
+            return alert("couldnt found the name")
                 
         }
       }
