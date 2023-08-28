@@ -70,7 +70,7 @@ const Home = ()=>{
           <option value="fodmap friendly">Fodmap friendly</option>
         </select>
         <select onChange={fontHandler}>
-          <option value="all">FONT</option>
+          {/* <option value="all">FONT</option> */}
           <option value="mis recetas">Mis resetas</option>
           <option value="originales">Originales</option>
         </select>

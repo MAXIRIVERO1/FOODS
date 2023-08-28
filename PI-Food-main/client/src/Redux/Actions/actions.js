@@ -7,6 +7,7 @@ export const FILTER_BY_DIET = "FILTER_BY_DIET";
 export const GET_DIETS = "GET_DIETS";
 export const BY_FONT = "BY_FONT"
 export const HEALTH_SCORE = "HEALTH_SCORE"
+export const CREATE_RECIPE = "CREATE_RECIPE";
 
 
 export function onSearch(name) {
@@ -91,4 +92,15 @@ export const healthScore = (score)=>{
         type: HEALTH_SCORE,
         payload: score,
     }
+}
+
+export const createRecipe=(recipe)=>{
+    return async (dispatch) => {
+        try {
+          const response = await axios.post("http://localhost:3001/recipes/", recipe);
+          dispatch({ type: CREATE_RECIPE, payload: response.data });
+        } catch (error) {
+          throw new Error("Failure")
+        }
+      };
 }

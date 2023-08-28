@@ -1,8 +1,18 @@
-
+import {createRecipe} from "../../Redux/Actions/actions"
 import { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import {validate} from "./validate"
 
 const Form = ()=>{
+    const dispatch = useDispatch()
+    const [errors, setErrors] = useState({
+        title: "",
+        image: "",
+        summary: "",
+        healthScore: "",
+        steps: "",
+        diet: "",
+    })
     const [recipe, setRecipe] = useState({
         title: "",
         image: "",
@@ -13,9 +23,12 @@ const Form = ()=>{
       });
 
 const handleSubmit=(e)=>{
-    e.preventDefault()
+    e.preventDefault();
+    dispatch(createRecipe(recipe))
+    alert("Succes")
 }
 const handleInputChange = (e) => {
+    e.preventDefault();
     const updatedRecipe = {
       ...recipe,
       [e.target.name]: e.target.value,
@@ -24,20 +37,16 @@ const handleInputChange = (e) => {
   };
 
   const handleDietChange = (e) => {
-    const selectedOptions = e.target.options;
-    const selectedDiets = [];
-  
-    for (let i = 0; i < selectedOptions.length; i++) {
-      if (selectedOptions[i].selected) {
-        selectedDiets.push(selectedOptions[i].value);
+    e.preventDefault()
+    const value = e.target.value
+    if(recipe.diet.includes(value)){return}
+    else{
+      const update = {
+        ...recipe,
+        diet: [...recipe.diet, value]
       }
+      setRecipe(update);
     }
-  
-    const updatedRecipe = {
-      ...recipe,
-      diet: selectedDiets,
-    };
-    setRecipe(updatedRecipe);
   };
   
     const handleRemoveDiet = (dietToRemove) => {
@@ -71,15 +80,15 @@ const handleInputChange = (e) => {
             <option value="fodmap friendly">Fodmap friendly</option>    
             </select></label><br />
             <div>
-            <h2>Selected Diets:</h2>
             <ul>
             {recipe.diet.map((diet, index) => (
             <li key={index}>
-              <button onClick={() => handleRemoveDiet(diet)}>{diet}x</button>
+              <button onClick={() => handleRemoveDiet(diet)}>{diet} X</button>
             </li>
             ))}
             </ul>
             </div>
+            <button type="submit">SUBMIT</button>
         </form>
     </div>
 }

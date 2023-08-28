@@ -1,4 +1,4 @@
-import {GET_ALL, GET_NAME, ASC, DES, FILTER_BY_DIET, GET_DIETS, BY_FONT, HEALTH_SCORE} from "../Actions/actions"
+import {GET_ALL, GET_NAME, ASC, DES, FILTER_BY_DIET, GET_DIETS, BY_FONT, HEALTH_SCORE, CREATE_RECIPE} from "../Actions/actions"
 
 
 const initialState= {
@@ -40,7 +40,7 @@ const reducer = (state=initialState, action)=>{
         case BY_FONT:
             let filtered = []
             if(action.payload === "originales"){filtered = state.copyRecipes.filter((e)=>e.id === Number(e.id))}
-            else{filtered = state.copyRecipes.filter((e)=>e.id !== Number(e.id))}
+            if(action.payload === "mis recetas"){filtered = state.copyRecipes.filter((e)=>e.id !== Number(e.id))}
             return{
                 ...state, recipes: filtered
             }
@@ -51,7 +51,13 @@ const reducer = (state=initialState, action)=>{
             return{
                 ...state, recipes: scores
             }
-            
+        case CREATE_RECIPE:
+            const newRecipe = action.payload;
+    
+            return {
+                ...state,
+                recipes: [...state.recipes, newRecipe]
+            }  
         default:
             return {
                 ...state
