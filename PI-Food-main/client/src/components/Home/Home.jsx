@@ -2,17 +2,18 @@ import React, { useState , useEffect} from "react";
 import SearchBar from "../SearchBar/SearchBar"
 import Cards from "../Cards/Cards";
 import {onSearch, getAll, descendiente, ascendente, filterByDiet, getDiets, byFont, healthScore} from "../../Redux/Actions/actions"
-import {useDispatch, useSelector} from "react-redux"
-import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import styles from "./Home.module.css"
 
 const Home = ()=>{
     
     const [currentPage, setCurrentPage] = useState(1);
     const dispatch = useDispatch();
     const recipes = useSelector((state)=>state.recipes)
-    const recipesPerPage = 10;
-
-
+    
+    const recipesPerPage = 9;
+    
+    
 
     useEffect(()=>{
       dispatch(getAll())
@@ -49,12 +50,17 @@ const Home = ()=>{
     const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-    return <div>
+
+    const handleDirection=(e)=>{
+      const value = e.target.value;
+      if(currentPage < totalPages && value === "next"){setCurrentPage(currentPage+1)}
+      if(currentPage > 1 && value === "back"){setCurrentPage(currentPage-1)}
+    }
+    return <div className={styles.home}>
         <SearchBar onSearch={onSearch}/>
-        <Link to={"/form"}><button>CREATE</button></Link>
-        <button onClick={()=>{ascHandler()}}>ASC</button>
+
         <button onClick={()=>{resetHandler()}}>RESET</button>
-        <button onClick={()=>{desHandler()}}>DES</button>
+
         <select onChange={dietChangeHandler}>
           <option value="all">FILTERDIET</option>
           <option value="vegetarian">Vegetarian</option>
@@ -70,27 +76,31 @@ const Home = ()=>{
           <option value="fodmap friendly">Fodmap friendly</option>
         </select>
         <select onChange={fontHandler}>
-          {/* <option value="all">FONT</option> */}
+          <option value="all">FONT</option>
           <option value="mis recetas">Mis resetas</option>
           <option value="originales">Originales</option>
         </select>
         <select onChange={healthHandler}>
-        <option value="">HealthScore</option>
-          <option value="ascendente">+HealthScore</option>
-          <option value="descendente">-HealthScore</option>
+        <option value="all">HealthScore</option>
+          <option value="descendente">+HealthScore</option>
+          <option value="ascendente">-HealthScore</option>
         </select>
+        <button onClick={()=>{ascHandler()}}>ASC</button>
+        <button onClick={()=>{desHandler()}}>DES</button>
         
 
         <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageChange(index + 1)}
-            className={currentPage === index + 1 ? "active" : ""}
-          >
-            {index + 1}
-        </button>
+        <button onClick={handleDirection} value="back">BACK</button>
+        {Array.from({ length: totalPages }).map((_, index) => (
+      <button
+        key={index}
+        onClick={() => handlePageChange(index + 1)}
+        className={currentPage === index + 1 ? "active" : "botones"}
+  >
+        {index + 1}
+      </button>
         ))}
+        <button onClick={handleDirection} value="next" >NEXT</button>
         </div>
         <Cards recipes={recipes.slice(
       (currentPage - 1) * recipesPerPage,

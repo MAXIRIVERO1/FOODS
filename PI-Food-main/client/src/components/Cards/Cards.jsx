@@ -7,14 +7,16 @@ const Cards=({recipes})=>{
       <div className={style.container}>
          {
                recipes.map((recipe, index)=> {
-                const {title, image, diets} = recipe
+                const {id,title, image, diets, healthScore} = recipe
                 console.log(title)
                return (
                    <Card 
                 key={index}
+                id={id}
                 title={title}
                 image={image}
                 diets={diets}
+                healthScore={healthScore}
                />
                )
               

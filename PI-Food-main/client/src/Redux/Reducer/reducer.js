@@ -1,10 +1,13 @@
-import {GET_ALL, GET_NAME, ASC, DES, FILTER_BY_DIET, GET_DIETS, BY_FONT, HEALTH_SCORE, CREATE_RECIPE} from "../Actions/actions"
+import {GET_ALL, GET_NAME, ASC, DES, FILTER_BY_DIET, GET_DIETS, BY_FONT, HEALTH_SCORE, CREATE_RECIPE, GET_DETAIL} from "../Actions/actions"
 
 
 const initialState= {
     recipes: [],
     copyRecipes: [],
-    diets: []
+    diets: [],
+    detail: {
+        diets:[]
+    }
 }
 
 const reducer = (state=initialState, action)=>{
@@ -41,6 +44,7 @@ const reducer = (state=initialState, action)=>{
             let filtered = []
             if(action.payload === "originales"){filtered = state.copyRecipes.filter((e)=>e.id === Number(e.id))}
             if(action.payload === "mis recetas"){filtered = state.copyRecipes.filter((e)=>e.id !== Number(e.id))}
+            if(action.payload === "all"){filtered = state.copyRecipes}
             return{
                 ...state, recipes: filtered
             }
@@ -48,6 +52,7 @@ const reducer = (state=initialState, action)=>{
             let scores = []
             if(action.payload === "ascendente"){scores = state.recipes.slice().sort((a,b)=>a.healthScore - b.healthScore)}
             if(action.payload === "descendente"){scores = state.recipes.slice().sort((a,b)=>b.healthScore - a.healthScore)}
+            if(action.payload === "all"){scores = state.recipes}
             return{
                 ...state, recipes: scores
             }
@@ -58,6 +63,10 @@ const reducer = (state=initialState, action)=>{
                 ...state,
                 recipes: [...state.recipes, newRecipe]
             }  
+        case GET_DETAIL:
+            return {
+                ...state, detail: action.payload
+            }
         default:
             return {
                 ...state

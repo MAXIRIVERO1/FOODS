@@ -49,6 +49,7 @@ const getAll = async()=>{
             id: recipe.id,
             title: recipe.title,
             image: recipe.image,
+            healthScore: recipe.healthScore,
             diets: dietsArray
          };
       });

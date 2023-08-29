@@ -1,7 +1,8 @@
 import {createRecipe} from "../../Redux/Actions/actions"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {validate} from "./validate"
+import {validate} from "./validation";
+import styles from "./Form.module.css"
 
 const Form = ()=>{
     const dispatch = useDispatch()
@@ -24,6 +25,13 @@ const Form = ()=>{
 
 const handleSubmit=(e)=>{
     e.preventDefault();
+
+    const validationErrors = validate(recipe);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return alert("all fields are required");
+    }  
+
     dispatch(createRecipe(recipe))
     alert("Succes")
 }
@@ -34,6 +42,14 @@ const handleInputChange = (e) => {
       [e.target.name]: e.target.value,
     };
     setRecipe(updatedRecipe);
+
+    const validationErrors = validate(recipe);
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
   };
 
   const handleDietChange = (e) => {
@@ -62,10 +78,15 @@ const handleInputChange = (e) => {
         <h1>Create your recipe</h1>
         <form onSubmit={handleSubmit}>
             <label>Title: <input type="text" name="title" value={recipe.title} onChange={handleInputChange}/></label><br />
-            <label>Image: <input type="text" name="image" value={recipe.image} onChange={handleInputChange}/></label><br />
+            {errors.title && <span className={styles.errors}>{errors.title}</span>}<br />
+            <label>Image URL: <input type="text" name="image" value={recipe.image} onChange={handleInputChange}/></label><br />
+            {errors.image && <span className={styles.errors}>{errors.image}</span>}<br />
             <label>HealthScore: <input type="number" name="healthScore" value={recipe.healthScore} onChange={handleInputChange}/></label><br />
+            {errors.healthScore && <span className={styles.errors}>{errors.healthScore}</span>}<br />
             <label>Summary: <textarea type="text" name="summary" value={recipe.summary} onChange={handleInputChange}/></label><br />
+            {errors.summary && <span className={styles.errors}>{errors.summary}</span>}<br />
             <label>Steps: <textarea type="text" name="steps" value={recipe.steps} onChange={handleInputChange}/></label><br />
+            {errors.steps && <span className={styles.errors}>{errors.steps}</span>}<br />
             <label>Diets: <select name="diet" value={recipe.diet} onChange={handleDietChange}>
             <option value="vegetarian">Vegetarian</option>
             <option value="vegan">Vegan</option>
@@ -79,6 +100,7 @@ const handleInputChange = (e) => {
             <option value="ketogenic">Ketogenic</option>
             <option value="fodmap friendly">Fodmap friendly</option>    
             </select></label><br />
+            {errors.diet && <span className={styles.errors}>{errors.diet}</span>}<br />
             <div>
             <ul>
             {recipe.diet.map((diet, index) => (

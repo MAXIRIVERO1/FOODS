@@ -1,0 +1,52 @@
+/* .card {
+    width: calc(20% - 20px); 
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(235, 14, 14, 0.287);
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 30%;
+    transition: transform 0.3s;
+  }
+.card:hover{
+    transform: scale(2.0);
+}
+  .link {
+    text-decoration: none;
+    color: #1aac10;
+  }
+
+  .image {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 10%;
+  } */
+  .card {
+    width: calc(20% - 20px);
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(235, 14, 14, 0.287);
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 10%;
+    transition: transform 0.3s;
+    overflow: hidden; /* Asegura que el contenido no se desborde al escalar */
+  }
+  
+  .card:hover {
+    transform: scale(1.1); /* Cambia el tamaño al hacer hover */
+    background-color: rgba(235, 14, 14, 0.5); /* Cambia el color de fondo al hacer hover */
+  }
+
+  .link {
+    text-decoration: none;
+    color: #1aac10;
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 10%;
+  }
