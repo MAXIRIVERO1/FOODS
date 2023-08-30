@@ -46,10 +46,6 @@ const handleInputChange = (e) => {
     const validationErrors = validate(recipe);
     setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length > 0) {
-      return;
-    }
-
   };
 
   const handleDietChange = (e) => {

@@ -12,7 +12,7 @@ const dietController = async ()=>{
             if(dietTypes.length < 1)dietTypes.push("vegetarian") 
         }
     }
-    const diet = response.data.results.map((recipe)=>recipe.diets)//en diet guarda un array de arrays con los tipos de dietas de cada receta
+    const diet = response.data.results.map((recipe)=>recipe.diets)
     if (diet) {
         for (const array of diet) {
             for (const dieta of array) {

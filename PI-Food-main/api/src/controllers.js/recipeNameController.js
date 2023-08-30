@@ -13,7 +13,7 @@ const recipeByName = async(name)=>{
    if(!recipe.length){
       const responseDB = await Recipe.findOne({
          where:{title : name},
-         include:[{model :Diets, attributes: ["name"], through: {attributes: []}}]//incluye los name de las dietas asociadas para que json.diets incluya un array de objetos name:diet 
+         include:[{model :Diets, attributes: ["name"], through: {attributes: []}}]
          })
          if(!responseDB){throw new Error("Dosnt exist in the database")}
          console.log(responseDB)
@@ -40,7 +40,7 @@ const getAll = async()=>{
    const response = await axios.get(`${URL_API}?apiKey=${API_KEY}${flag}&number=100`);
    const result = response.data.results
    const responseDB = await Recipe.findAll({
-      include:[{model :Diets, attributes: ["name"], through: {attributes: []}}]//incluye los name de las dietas asociadas para que json.diets incluya un array de objetos name:diet 
+      include:[{model :Diets, attributes: ["name"], through: {attributes: []}}]
       })
       console.log(responseDB)
       const dbRecipesWithDiets = responseDB.map(recipe => {

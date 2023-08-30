@@ -5,7 +5,7 @@ const dietHandler = async (req, res)=>{
     try {
         const existingDiets = await Diets.findAll();
         if(existingDiets.length === 0){const diets = await dietController();
-        if(diets.length){await Promise.all(diets.map(async(element)=>{await Diets.create({ name: element })}))}//promise all recibe el array de promesas await y las carga en la base de datos obteniendolas de diets
+        if(diets.length){await Promise.all(diets.map(async(element)=>{await Diets.create({ name: element })}))}
         if(diets.length) return res.status(200).json(diets)
         else{return res.status(404).send("dosnt exist diets")}
     }

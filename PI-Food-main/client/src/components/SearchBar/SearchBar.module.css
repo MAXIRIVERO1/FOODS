@@ -10,9 +10,9 @@
      outline: none;
  }
  .button{
-     border-radius: 5px;
-     background-color: rgba(0, 0, 0, 0.53);
-     color: rgb(35, 239, 86);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.775);
+    color: rgb(35, 239, 86);
  }
  .button:hover{
      transform: scale(1.2);
