@@ -48,8 +48,8 @@ const recipeById = async(id) =>{
     }else{
         const { data } = await axios(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`);
         const {title, image, summary, healthScore, analyzedInstructions , diets} = data;
-        const steps = analyzedInstructions[0].steps.map((stepobj)=>stepobj.step)
-        if(!analyzedInstructions){const recipeWithoutInst = {id, title, image, summary : removeTags(summary), healthScore, diets}; return recipeWithoutInst}
+        const steps = analyzedInstructions[0]?.steps?.map((stepobj)=>stepobj.step)
+        if(!steps){const recipeWithoutInst = {id, title, image, summary : removeTags(summary), healthScore, diets}; return recipeWithoutInst}
         else{const recipe = {id, title, image, summary : removeTags(summary), healthScore, steps: steps.join(" "), diets}
         if (recipe) {
             return recipe;

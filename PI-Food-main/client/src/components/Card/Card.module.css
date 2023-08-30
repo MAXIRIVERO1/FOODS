@@ -11,8 +11,8 @@
   }
   
   .card:hover {
-    transform: scale(1.1); /* Cambia el tamaño al hacer hover */
-    background-color: rgba(187, 3, 3, 0.5); /* Cambia el color de fondo al hacer hover */
+    transform: scale(1.1); 
+    background-color: rgba(187, 3, 3, 0.5); 
   }
 
   .link {
