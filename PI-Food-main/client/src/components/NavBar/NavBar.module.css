@@ -1,0 +1,17 @@
+.container{
+    background-color: rgba(187, 3, 3, 0.5);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+.button{
+    border-radius: 5px;
+    background-color: rgba(192, 232, 255, 0.261);
+    color: rgb(74, 237, 66);
+    font-size: 20px;
+}
+.button:hover{
+    transform: scale(1.2);
+    background-color: black;
+    color: rgb(74, 237, 66);
+    cursor: pointer;
+}

@@ -4,3 +4,25 @@
     width: 100%;
     height: 300vh;
   } */
+.button{
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.775);
+  color: rgb(35, 239, 86);
+}
+.button:hover{
+    transform: scale(1.2);
+    background-color: black;
+    color: rgb(35, 239, 86);
+    cursor: pointer;
+}
+
+.active{
+  border-radius: 5px;
+  background-color: rgba(128, 3, 3, 0.53);
+  color: rgb(238, 157, 201);
+}
+.active:hover{
+  transform: scale(1.2);
+  background-color: black;
+  color: rgb(35, 239, 86);
+}

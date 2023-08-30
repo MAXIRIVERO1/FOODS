@@ -59,9 +59,9 @@ const Home = ()=>{
     return <div className={styles.home}>
         <SearchBar onSearch={onSearch}/>
 
-        <button onClick={()=>{resetHandler()}}>RESET</button>
+        <button className={styles.button} onClick={()=>{resetHandler()}}>RESET</button>
 
-        <select onChange={dietChangeHandler}>
+        <select className={styles.button} onChange={dietChangeHandler}>
           <option value="all">FILTERDIET</option>
           <option value="vegetarian">Vegetarian</option>
           <option value="vegan">Vegan</option>
@@ -75,32 +75,32 @@ const Home = ()=>{
           <option value="ketogenic">Ketogenic</option>
           <option value="fodmap friendly">Fodmap friendly</option>
         </select>
-        <select onChange={fontHandler}>
+        <select className={styles.button} onChange={fontHandler}>
           <option value="all">FONT</option>
           <option value="mis recetas">Mis resetas</option>
           <option value="originales">Originales</option>
         </select>
-        <select onChange={healthHandler}>
+        <select className={styles.button} onChange={healthHandler}>
         <option value="all">HealthScore</option>
           <option value="descendente">+HealthScore</option>
           <option value="ascendente">-HealthScore</option>
         </select>
-        <button onClick={()=>{ascHandler()}}>ASC</button>
-        <button onClick={()=>{desHandler()}}>DES</button>
+        <button className={styles.button} onClick={()=>{ascHandler()}}>ASC</button>
+        <button className={styles.button} onClick={()=>{desHandler()}}>DES</button>
         
 
         <div className="pagination">
-        <button onClick={handleDirection} value="back">BACK</button>
+        <button className={styles.button} onClick={handleDirection} value="back">BACK</button>
         {Array.from({ length: totalPages }).map((_, index) => (
       <button
         key={index}
         onClick={() => handlePageChange(index + 1)}
-        className={currentPage === index + 1 ? "active" : "botones"}
-  >
+        className={currentPage === index + 1 ? styles.active : styles.button}
+      >
         {index + 1}
       </button>
         ))}
-        <button onClick={handleDirection} value="next" >NEXT</button>
+        <button className={styles.button} onClick={handleDirection} value="next" >NEXT</button>
         </div>
         <Cards recipes={recipes.slice(
       (currentPage - 1) * recipesPerPage,

@@ -29,9 +29,10 @@ const reducer = (state=initialState, action)=>{
                 ...state, recipes: state.recipes.slice().sort((a,b)=>b.title.localeCompare(a.title))
             }
         case FILTER_BY_DIET:
-            const filteredRecipes = state.copyRecipes.filter(recipe => {
+            let filteredRecipes = state.copyRecipes.filter(recipe => {
             return recipe.diets.includes(action.payload);
                 });
+            if(action.payload === "all"){filteredRecipes = state.copyRecipes}
     
             return {
                 ...state, recipes: filteredRecipes

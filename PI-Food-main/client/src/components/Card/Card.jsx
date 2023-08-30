@@ -13,7 +13,7 @@ const Card = ({id, title, image, diets, healthScore})=>{
     }
 
     console.log(title)
-    return (<div>
+    return (<div className={style.card}>
             <Link className={style.link} onClick={handleDetail} to={`/detail/${id}`}>
             <h2> {title} </h2>
          </Link>
