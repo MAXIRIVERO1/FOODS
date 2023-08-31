@@ -61,7 +61,8 @@ const handleInputChange = (e) => {
     }
   };
   
-    const handleRemoveDiet = (dietToRemove) => {
+    const handleRemoveDiet = (event, dietToRemove) => {
+        event.preventDefault();
         const updatedDiets = recipe.diet.filter((diet) => diet !== dietToRemove);
         const updatedRecipe = {
         ...recipe,
@@ -102,7 +103,7 @@ const handleInputChange = (e) => {
             <ul>
             {recipe.diet.map((diet, index) => (
             <li key={index}>
-              <button className={styles.button} onClick={() => handleRemoveDiet(diet)}>{diet} X</button>
+              <button className={styles.button} onClick={(event) => handleRemoveDiet(event, diet)}>{diet} X</button>
             </li>
             ))}
             </ul>

@@ -34,10 +34,12 @@ const Home = ()=>{
     const dietChangeHandler = (event) => {
       const selectedValue = event.target.value;
           dispatch(filterByDiet(selectedValue));
+          setCurrentPage(1);
     };
     const fontHandler = (event)=>{
       const selectedFont = event.target.value;
           dispatch(byFont(selectedFont))
+          setCurrentPage(1);
     }
     const healthHandler = (event)=>{
       const selected = event.target.value;
@@ -57,7 +59,7 @@ const Home = ()=>{
       if(currentPage > 1 && value === "back"){setCurrentPage(currentPage-1)}
     }
     return <div className={styles.home}>
-        <SearchBar onSearch={onSearch}/>
+        <SearchBar onSearch={onSearch} setCurrentPage={setCurrentPage} />
 
         <button className={styles.button} onClick={()=>{resetHandler()}}>RESET</button>
 
