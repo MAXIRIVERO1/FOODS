@@ -19,7 +19,7 @@ const Home = ()=>{
       dispatch(getAll())
       dispatch(getDiets())
       console.log("despachando diets")
-    },[])
+    },[dispatch])
 
     const ascHandler = ()=>{
       dispatch(ascendente())

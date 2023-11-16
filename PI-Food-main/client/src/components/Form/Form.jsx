@@ -33,6 +33,14 @@ const handleSubmit=(e)=>{
     }  
 
     dispatch(createRecipe(recipe))
+    setRecipe({
+        title: "",
+        image: "",
+        summary: "",
+        healthScore: "",
+        steps: "",
+        diet: [],
+      })
     alert("Succes")
 }
 const handleInputChange = (e) => {

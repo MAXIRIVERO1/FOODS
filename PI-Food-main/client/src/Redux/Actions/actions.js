@@ -9,6 +9,7 @@ export const BY_FONT = "BY_FONT"
 export const HEALTH_SCORE = "HEALTH_SCORE"
 export const CREATE_RECIPE = "CREATE_RECIPE";
 export const GET_DETAIL = "GET_DETAIL";
+export const CLEAR_DETAIL = "CLEAR_DETAIL"
 
 
 export function onSearch(name) {
@@ -111,6 +112,16 @@ export const getDetail = (id)=>{
         try {
           const response = await axios.get(`http://localhost:3001/recipes/${id}`);
           dispatch({ type: GET_DETAIL, payload: response.data });
+        } catch (error) {
+          throw new Error("Failure")
+        }
+      };
+}
+
+export const clearDetail = (id)=>{
+    return async (dispatch) => {
+        try {
+          dispatch({ type: CLEAR_DETAIL});
         } catch (error) {
           throw new Error("Failure")
         }

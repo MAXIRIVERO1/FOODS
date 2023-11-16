@@ -1,13 +1,11 @@
-import {GET_ALL, GET_NAME, ASC, DES, FILTER_BY_DIET, GET_DIETS, BY_FONT, HEALTH_SCORE, CREATE_RECIPE, GET_DETAIL} from "../Actions/actions"
+import {GET_ALL, GET_NAME, ASC, DES, FILTER_BY_DIET, GET_DIETS, BY_FONT, HEALTH_SCORE, CREATE_RECIPE, GET_DETAIL, CLEAR_DETAIL} from "../Actions/actions"
 
 
 const initialState= {
     recipes: [],
     copyRecipes: [],
     diets: [],
-    detail: {
-        diets:[]
-    }
+    detail: { diets : []}
 }
 
 const reducer = (state=initialState, action)=>{
@@ -67,6 +65,10 @@ const reducer = (state=initialState, action)=>{
         case GET_DETAIL:
             return {
                 ...state, detail: action.payload
+            }
+        case CLEAR_DETAIL:
+            return {
+                ...state, detail: { diets: []}
             }
         default:
             return {

@@ -1,8 +1,18 @@
 import { useSelector} from "react-redux"
 import styles from "./Detail.module.css"
-
+import {useEffect} from "react"
+import {useParams} from "react-router-dom"
+import { useDispatch } from "react-redux";
+import {getDetail, clearDetail} from "../../Redux/Actions/actions"
 
 export const Detail = ()=>{
+    const {id} = useParams()
+    const dispatch = useDispatch()
+    useEffect(()=>{
+      dispatch(getDetail(id))
+      return dispatch(clearDetail())
+    },[dispatch,id])
+
     const detail = useSelector((state)=>state.detail)
     
     const {title, image, summary, healthScore, steps} = detail;
@@ -19,7 +29,7 @@ export const Detail = ()=>{
         <p>{steps}</p>
         <h2>Diets:</h2>
       <ul>
-        {detail.diets.map((diet, index) => (
+        {detail.diets?.map((diet, index) => (
           <li key={index}>{diet}</li>
         ))}
       </ul>
